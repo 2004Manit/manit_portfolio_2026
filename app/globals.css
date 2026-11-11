@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #f5f3ea;
+  --color-paper: #ffffff;
+  --color-ink: #252525;
+  --color-ink-2: #525252;
+  --color-muted: #949494;
+  --color-line: rgba(37, 37, 37, 0.08);
+
+  /* pastel accents */
+  --color-pink: #fedcdd;
+  --color-blue: #bbdafe;
+  --color-butter: #f3ea9a;
+  --color-lime: #e0fd72;
+  --color-mint: #c7f8d9;
+  --color-lavender: #e2dcfd;
+
+  /* saturated accents */
+  --color-red: #fd5d5c;
+  --color-sun: #fac900;
+  --color-leaf: #34c75a;
+  --color-sky: #039cfb;
+  --color-violet: #8168fd;
+  --color-orchid: #ec68fd;
+  --color-forest: #1f3d2b;
+
+  --font-display: var(--font-mona), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --shadow-card: 0 1px 0 rgba(0, 0, 0, 0.04), 0 10px 30px -12px rgba(0, 0, 0, 0.28);
+  --shadow-sticker: 0 1px 1px rgba(0, 0, 0, 0.12), 0 6px 14px -6px rgba(0, 0, 0, 0.35);
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-cream);
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-lime);
+  color: var(--color-ink);
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* first-load intro: hidden before paint once this tab has seen it (set by the inline script in app/layout.tsx) */
+html.intro-seen [data-intro] {
+  display: none;
+}
+
+@layer components {
+  /* heavy, tight, uppercase display type */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 850;
+    font-variation-settings: "wdth" 100;
+    text-transform: uppercase;
+    letter-spacing: -0.045em;
+    line-height: 0.86;
+  }
+
+  /* faint grid-paper background */
+  .grid-paper {
+    background-color: var(--color-cream);
+    background-image:
+      linear-gradient(to right, rgba(37, 37, 37, 0.055) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 37, 37, 0.055) 1px, transparent 1px);
+    background-size: 56px 56px;
+    background-position: center top;
+  }
+
+  /* frosted glass used in the hero + dock */
+  .glass {
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    backdrop-filter: blur(14px) saturate(140%);
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+  }
+
+  .focus-ring {
+    outline: none;
+  }
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--color-sky);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
